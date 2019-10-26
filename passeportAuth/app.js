@@ -4,6 +4,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+var cors = require('cors');
+
 
 const session = require('express-session')
 
@@ -51,6 +53,7 @@ app.use(passport.initialize());
 
 //parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 
 
@@ -59,7 +62,10 @@ app.use("/contest",contest);
 
 
 // start the app
-app.listen(3000, function() {
+app.listen(3000, function(req,res) {
+   // Website you wish to allow to connect
+
+   
   console.log("Express is running on port");
 });
 

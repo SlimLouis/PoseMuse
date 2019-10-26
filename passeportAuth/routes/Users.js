@@ -131,16 +131,17 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   
   // login route
   user.post('/login', async function(req, res, next) { 
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const { email, password } = req.body;
     if (email && password) {
       // we get the user with the name and save the resolved promise
       
       let user = await getUser({ email });
-      console.log(user);
+     // console.log(user);
       if (!user) {
         res.status(401).json({ msg: 'No such user found', user });
       }
-     if (bcrypt.compareSync(password, user.password)) {
+    else if (bcrypt.compareSync(password, user.password)) {
         // from now on we’ll identify the user by the id and the id is
   // the only personalized value that goes into our token
         let payload = { name: user.name };
@@ -148,13 +149,14 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
         let user_id = user.id;
         req.login(user_id,function(err)
         {
-          res.json({ msg: 'ok', token: token });
-          console.log(req.user);
-          console.log(req.isAuthenticated())
+          res.json(user);
+         // console.log(user.dataValues);
+          // console.log(req.user);
+          // console.log(req.isAuthenticated())
         })
       } else {
         res.status(401).json({ msg: "Password is incorrect" });
-      }
+      } 
     }
   });
   //serialization and deserialization
@@ -171,6 +173,7 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
 
   // get all users
   user.get('/users', function(req, res) {
+
   getAllusers().then(user => res.json(user)); 
 });
 
@@ -214,12 +217,35 @@ user.post('/check_password',async function(req,res)
 
 //find user
 
-user.post('/find_user', async function(req,res)
+user.get('/find_user', async function(req,res)
 {
-    const {username,password} = req.body ;
-    let user = await getUser({ username,password } );
+    
+  try
+  {
+    var {email} = req.body ;
+    //      console.log(email);
 
-    res.json(user);
+       let user = await getUser({ email } );
+       if (user==null)
+       {
+        console.log(typeof(email))
+
+         res.json("no such email");
+       }
+       else
+       {
+         console.log(email)
+        res.json(user);
+
+       }
+    
+  }
+  catch(err)
+  {
+    console.log(err)
+  }
+    
+  
 })
 
 
