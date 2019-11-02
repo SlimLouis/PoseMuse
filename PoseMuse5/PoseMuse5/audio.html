@@ -1,0 +1,126 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <style>
+        body, html, div, p{
+            margin: 0;
+            padding: 0;
+        }
+
+        button{
+            margin: 0;
+        }
+
+        body{
+            font-size: 12px;
+        }
+
+        .wrap{
+            width: 320px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            background: #000;
+            color: #fff;
+        }
+
+        .range{
+            -webkit-appearance: slider-vertical;
+            width: 20px;
+            height: 100px;
+        }
+
+        .eq-range table{
+            text-align: center;
+        }
+
+        .td-val{
+            position: relative;
+            color: #fff;
+            text-align: center;
+            width: 30px;
+        }
+
+        .td-val:before, .td-val:after{
+            position: absolute;
+            display: block;
+            width: 30px;
+        }
+
+        .td-val:before{
+            content: "+40";
+            left: 0;
+            top: 0;
+        }
+
+        .td-val:after{
+            content: "-40";
+            left: 0;
+            bottom: 0;
+        }
+
+        .eq-visual{
+            margin: 5px;
+            width: 310px;
+            text-align: center;
+            background: #fff;
+        }
+
+        canvas{
+            width: 300px;
+            height: 170px;
+            margin: 0 auto;
+        }
+        
+
+        .filter-btn{
+            margin: 5px;
+            padding: 5px;
+            background: #d9d9d9;
+            border-radius: 6px;
+        }
+
+        .filter-btn > p{
+            color: #000;
+        }
+
+        .play-btn{
+            text-align: center;
+        }
+
+        .play-btn input{
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web audio tutorial</h1>
+    <div class="wrap">
+        <div class="play-btn">
+            <button class="play">
+                Play</button>
+            <button class="stop">
+                Stop</button>
+            <div>
+                Volume :
+                <input type="range" min="0" max="10" step="0.1" id="range1"></div>
+        </div>
+    </div>
+</body>
+<script src="js/soundmanager2-jsmin.js"></script>
+<script>
+    // where to find flash SWFs, if needed...
+    soundManager.url = '/path/to/swf-files/';
+
+    soundManager.onready(function() {
+        soundManager.createSound({
+            id: 'mySound',
+            url: 'http://192.168.1.10/passeportAuth/uploads/1572340072673ommezzin!!.mp3'
+        });
+
+        // ...and play it
+        soundManager.play('mySound');
+    });
+</script>
+</html>

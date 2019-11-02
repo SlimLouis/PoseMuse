@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/PoseMuse5" version="1.0.0" viewmodes="maximized">
+    <access origin="*" subdomains="true"></access>
+    <access origin="*" subdomains="true"></access>
+    <tizen:application id="uScBEML1En.PoseMuse5" package="uScBEML1En" required_version="2.4"/>
+    <content src="dashboard.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="posemuse.png"/>
+    <name>PoseMuse5</name>
+    <tizen:privilege name="http://tizen.org/privilege/download"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/volume.set"/>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:profile name="mobile"/>
+    <tizen:setting context-menu="disable"/>
+</widget>
