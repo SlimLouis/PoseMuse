@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>RdjOKm55bihM0UPdH57iULRHOF1QtEk5IMLWzWRdKJs=</DigestValue>
+<DigestValue>RrGaXeC6tavR/k3+LHTE35E7MJdRsKoSfmb03B4YprQ=</DigestValue>
 </Reference>
 <Reference URI="posemuse.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -19,9 +19,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-MtL/yf8hw6bDrRVMKiYfVVnwL5XMuQa64mTLbzeSi1H1gY+wMuPKtipFral7WSzD0jGWkvEW7VMy
-MxPs8mXrwwSqkHFDPoeqJICnFDE8985OiPiDYB2iNVUlHLIY4WZJSCJRLjXP21jsrD3+3R/qFLyc
-cGRwW/C0iI27M6RbrIM=
+WOGmFgvTYn+YgGynIhGg5/qgIhpqMKWvxr/wjsOuVIizMvr4ghXXbKGT9UH7lbi28A78lplZ78G8
+DO7l5hz/FgntZYx0zKcOPBXaLIXP8sEkt/F2tCAdFMGHZMu0Qp8ByyVohEisjVq2Roxf/hzdsd5p
+yZPlD+wohl/rJ6FD4m4=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

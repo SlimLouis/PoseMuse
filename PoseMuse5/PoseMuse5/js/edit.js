@@ -1,10 +1,11 @@
 
-var url="http://localhost:3000/users/find_user";
+var url="http://192.168.1.10:3000/users/find_user";
 var user = JSON.parse(localStorage.getItem("user"));
 var user_profile = localStorage.getItem("user_profile");
 $(document).ready(function()
 {    current_user();
-    
+    load_contests();
+
 
         load_img();
     
@@ -22,7 +23,7 @@ window.onload=function()
 function current_user()
 {
 
-    const url = 'http://localhost:3000/users/get_current';
+    const url = 'http://192.168.1.10:3000/users/get_current';
     const data = { id: user.id };
     
     // try {
@@ -72,7 +73,7 @@ function current_user()
 
 function update(test)
 {
-    var url = "http://localhost:3000/profile/update"
+    var url = "http://192.168.1.10:3000/profile/update"
    
 
     fetch(url, {
@@ -93,7 +94,7 @@ function update(test)
 function load_img()
 {
 
-    var img_src="http://localhost/passeportauth/uploads/images/"+user.profile_pic;
+    var img_src="http://192.168.1.10/passeportauth/uploads/images/"+user.profile_pic;
     $("#img_alt").attr("src",img_src);
     $("#user-account-avatar").attr("src",img_src);
 
@@ -101,7 +102,7 @@ function load_img()
 
 // upload_img()
 // {
-//     var url_upload ="http://localhost:3000/users/upload"
+//     var url_upload ="http://192.168.1.10:3000/users/upload"
 //     var xhttp = new XMLHttpRequest();
 //     xhttp.open("POST",url_upload) ;
 //     var input_click = $("upload-avatar-btn") ;
@@ -340,7 +341,7 @@ function load_song()
 
 {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST","http://localhost:3000/audition/find_audition",false);
+    xhttp.open("POST","http://192.168.1.10:3000/audition/find_audition",false);
     xhttp.setRequestHeader("Content-Type","application/json");
     var obj =
     {
@@ -372,10 +373,9 @@ function draw_auditions(auditions)
      console.log('size of auditoons',auditions.length)
      for (let i=0;i<auditions.length;i++)
      {
-            console.log(i)
-    var full_url = "http://127.0.0.1/passeportAuth/uploads/"+auditions[i].demo_file;
+    var full_url = "http://192.168.1.10/passeportAuth/uploads/"+auditions[i].demo_file;
    
-   var $item_audio = $(`<div class="track-list-item">
+   var $item_audio = $(`<div id=play_id`+auditions[i].id+` class="track-list-item">
    <div class="ui360 track-play inline"><a href=`+full_url+` type="audio/mp3"><span>PLAY</span></a></div>
    <span class="track-title">`+auditions[i].demo_file+`</span>
    <span class="track-length">(2:24)</span>
@@ -386,20 +386,124 @@ function draw_auditions(auditions)
     
 }
 
-function del(test)
-{
 
+function load_contests()
+
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST","http://192.168.1.10:3000/contest/find_contest",false);
+    xhttp.setRequestHeader("Content-Type","application/json");
+    var obj =
+    {
+        id_user:user.id
+    }
+
+    xhttp.onreadystatechange= function()
+    {
+        if (xhttp.readyState==4 && xhttp.status===200)
+        {
+            var test = JSON.parse(xhttp.responseText);
+            var contests =[];
+            for (let i=0;i<test.length;i++)
+            {
+                contests[i] =test[i]
+            }
+            // alert(contests.length);
+
+            draw_contests(contests);
+        }
+       
+    }
+    xhttp.send(JSON.stringify(obj));
+
+    
+}
+function date_time_hour(today,datejoin)
+{
+var diffMs = (today - datejoin); 
+// console.log(diffMs)
+// milliseconds between now & Christmas
+var diffDays = Math.floor(diffMs / 86400000); // days
+var diffHrs = Math.round(diffMs / (1000 * 60 * 60));
+var diffMins = Math.round(diffMs / (1000 * 60));
+if (diffMins<60)
+{
+    return diffMins+'minutes';
+}
+else if (diffMins>=60 && diffMins<1440)
+{
+    return diffHrs+'hours';
+}
+else if ( diffMins >=1440)
+{
+    return diffDays+'days';
+}
+
+
+}
+function draw_contests(contests)
+{
+     var div_content = $('#account-contests');
+     console.log('size of contest',contests.length)
+     for (let i=0;i<contests.length;i++)
+     {
+        const dateTime = contests[i].createdAt;
+
+        const time_join = new Date(dateTime);
+        const time_now = new Date();
+        var time_diff = date_time_hour(time_now,time_join)
+
+   var $item_contest = $(`<div id=contest_`+contests[i].id+` class="track-list-item">
+   <div class="activity-item">
+   <div class="activity-status">
+                               <span class="badge badge-yellow">NEW CONTEST</span> <span class="activity-created">`+time_diff+` ago</span>
+                       </div>
+   <div class="activity-info">
+                               <a href="/u/iamdjankit">`+contests[i].name+`</a> has just been created .
+           <br>
+                                       Check out our latest <a href="/u/iamdjankit">producer</a> by viewing his  profile.
+                                               </div>
+    <button name="edit_contest" value="24265" onclick="$(this).slideUp()" class="btn btn-sm btn-default remove roll-alt">EDIT</button>
+
+   <button name="remove_contest" value="24265" onclick=del_(`+contests[i].id+`) class="btn btn-sm btn-default remove roll-alt">REMOVE</button>
+   </div>`)
+   div_content.append($item_contest);    
+     }
+    
+}
+function del_(test)
+{
+    $(`#contest_`+test).slideUp()
     var id={
         id:test
     }
-    fetch("http://localhost:3000/audition/delete",{
+    fetch("http://192.168.1.10:3000/Contest/delete",{
 method:'DELETE',
 body:JSON.stringify(id) ,
 headers:{
     'Content-Type': 'application/json',
 }  ,
 
- }).then(response=>console.log(response))
+ }).then(response=>console.log(response)
+    )
+
+}
+
+function del(test)
+{
+    $(`#play_id`+test).slideUp()
+    var id={
+        id:test
+    }
+    fetch("http://192.168.1.10:3000/audition/delete",{
+method:'DELETE',
+body:JSON.stringify(id) ,
+headers:{
+    'Content-Type': 'application/json',
+}  ,
+
+ }).then(response=>console.log(response)
+    )
 
 }
 function save()
@@ -408,7 +512,6 @@ function save()
    $("#btn_save").click(function(ev)
 {
   ev.preventDefault();
-  $('')
 }) ;
 
 

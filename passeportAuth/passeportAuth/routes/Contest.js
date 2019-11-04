@@ -9,7 +9,7 @@ var CryptoJS = require('crypto-js');
 var sha1 = require('sha1');
  
 
-
+var fs = require('fs')
 var MySQLStore = require('express-mysql-session')(session);
 const upload_express = require('express-fileupload')
 
@@ -92,12 +92,18 @@ Contest.use(bodyParser.urlencoded({ extended: true }));
     };
 
 
+    const ContestByID = async({ id_user }) =>
+    {
+      
+        return db.Contest.findAll({where :{muserId:id_user}});
+    };
+
   
 
-  const createContest = async ({id_p,name,typeuse,gender,style,price,endedAt,description,audio,muserId}) =>
+  const createContest = async ({id_p,name,type_use,gender,style,price,endedAt,description,audio,muserId}) =>
   {
 
-      return await db.Contest.create({id_p,name,type_use:typeuse,gender,style,price,endedAt,description,audio,muserId});
+      return await db.Contest.create({id_p,name,type_use,gender,muserId,style,price,endedAt,description,audio});
   };
 
 
@@ -165,14 +171,57 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   });
   //serialization and deserialization
 
+  const getAllcont = async(muserId) =>
+  {
+      return db.Contest.findAll(
+        {
+          returning:true,where:muserId
+        }
+      );
+  };
 
+  //find contests
 
+Contest.post('/find_contest', async function(req,res)
+{
+    const {id_user} = req.body ;
+    console.log(id_user);
+     let cont = await getAllcont({muserId:id_user} );
+
+    res.json(cont);
+})
   // get all Contests
   Contest.get('/Contests', function(req, res) {
-  getAllContests().then(Contest => res.json(Contest)); 
+    const {id_user} = req.body
+  ContestByID({id_user}).then(Contest => res.status(200).json(Contest)); 
+  
 });
 
+ //delete by id
+ const deleteById = async({id})=>
+ {
+   return db.Contest.destroy({where: {id:id}});
+ }
 
+ //audition delete
+
+
+ Contest.delete('/delete',async function(req,res)
+ {
+   const {id} = req.body ;
+   console.log(id);
+   let contest =  await getContest({id} );
+var aud = contest.dataValues
+console.log(aud)
+let path = 'C:/xampp/htdocs/passeportAuth/uploads/'+aud.audio
+console.log(path);
+fs.unlink(path,function()
+{
+ console.log('deleted')
+})
+res.json(contest).then(deleteById({id}));
+
+ })
 //upload file
 Contest.post('/upload', function(req, res) {
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -201,28 +250,35 @@ Contest.post('/create_contest',async function(req,res,next){
 
 const {contest} = (req.body)
 console.log(contest)
-var contest_j = JSON.parse(contest)
-const {name,typeuse,gender,style,price,endedAt,description,muserId} = contest_j ;
-if ( !req.files || Object.keys(req.files).length === 0 ) {
-  return res.status(400).send('No files were uploaded.');
+console.log("test")
+try {
+  var contest_j = JSON.parse(contest)
+} catch(e) {
+  console.log(e); // error in the above string (in this case, yes)!
 }
-const {Demo} = req.files ;
+
+const {name,type_use,gender,style,price,audio,endedAt,description,muserId} = contest_j ;
+// if ( !req.files || Object.keys(req.files).length === 0 ) {
+//   return res.status(400).send('No files were uploaded.');
+// }
+// const {Demo} = req.files ;
 
 id_p = sha1(muserId+name+Date.now());
 id_p = id_p.slice(0,12);
 
 
 // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-let sampleFile = req.files.Demo;
+// let sampleFile = req.files.Demo;
 // Use the mv() method to place the file somewhere on your server
-sampleFile.mv('uploads/demos/'+id_p+sampleFile.name, function(err) {
-  if (err)
-    return res.status(500).send(err);
+// sampleFile.mv('uploads/demos/'+id_p+sampleFile.name, function(err) {
+//   if (err)
+//     return res.status(500).send(err);
 
-createContest({id_p,name,typeuse,gender,style,price,endedAt,description,audio:Demo.name,muserId})
+createContest({id_p,name,type_use,gender,style,price,audio,endedAt,description,muserId:muserId})
   .then(Contest => res.json({Contest,msg:'has been created'}))
   .catch(e=>{
-    res.status(400).json(e)
+    // console.log("testbro")
+    res.status(345).json(e)
   })
 
   
@@ -236,7 +292,7 @@ createContest({id_p,name,typeuse,gender,style,price,endedAt,description,audio:De
  
 
 
-})
+
 
 
 

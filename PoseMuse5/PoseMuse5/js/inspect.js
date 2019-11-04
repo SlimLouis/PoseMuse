@@ -1161,14 +1161,30 @@ var countries= [
     },
  ];
 var id = localStorage.getItem("id_inspect");
+var userx = JSON.parse(localStorage.getItem("user"));
+
 $(document).ready(function()
 {
+    check_usr();
+
 fetch_user(id);
 })
 
+
+function check_usr()
+{
+    
+    if (userx===null)
+    {
+
+        window.location.href="login.html";
+        
+    }
+};
+
 function fetch_user(id)
 {
-    var url ="http://localhost:3000/users/get_profile";
+    var url ="http://192.168.1.10:3000/users/get_profile";
     var obj = {
         id:id
     }
@@ -1254,8 +1270,17 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 var string_date = monthNames[dateObject.getMonth()]+' '+dateObject.getDate()+', '+dateObject.getFullYear();
-var img_url = "http://localhost/passeportauth/uploads/images/"+user[0].profile_pic
+var img_url = "http://192.168.1.10/passeportauth/uploads/images/"+user[0].profile_pic
+var img_url_current = "http://192.168.1.10/passeportauth/uploads/images/"+userx.profile_pic
+
+
 $('#image_user').attr("src",img_url);
+$('#image_user').attr("alt",user[0].username);
+$('#avatar_user').attr("src",img_url_current);
+
+
+
+
 $('#member_since').text(string_date)
 
 //  console.log(userx);

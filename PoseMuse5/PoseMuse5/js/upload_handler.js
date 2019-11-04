@@ -6792,7 +6792,7 @@ var AudioUploader = {
       container: containerId,
       max_file_size: "30mb",
       multipart_params : {id:user.id},
-      url: 'http://localhost:3000/audition/upload',
+      url: 'http://192.168.1.10:3000/audition/upload',
       unique_names: true,
       multi_selection: false,
       flash_swf_url: "/plupload/js/Moxie.swf",
@@ -6808,19 +6808,14 @@ var AudioUploader = {
     uploader.init();
 
     uploader.bind("FilesAdded", function(up, files) {
-      if ($("#record-start").length) {
-        $("#record-start").slideUp();
-        $("#record-action-container").addClass("hide");
-        $("#audio-recording").slideUp();
-        if (Recorder._initialized) {
-          Recorder.stop();
-        }
-      }
+
+
+      
 
       // Clear any hidden audio
       $(".hidden-audio", $form).remove();
       $(".badge-soundcloud", $form).remove();
-      $audioUploadPreview.slideUp();
+      // $audioUploadPreview.slideUp();
 
       // Clear any errors
       $label = $('[for="' + $container.attr("id") + '"]');
@@ -6848,6 +6843,7 @@ var AudioUploader = {
         $label.find(".error").remove();
         $label.append(' <span class="error">' + message + "</span>");
       } else {
+
       }
       /*
             $('.upload-audio', $container).text("Error: " + err.code +
@@ -6857,16 +6853,19 @@ var AudioUploader = {
       //$('.upload-audio', $container).removeClass('hide');
       up.refresh(); // Reposition Flash/Silverlight
     });
-
-    uploader.bind("FileUploaded", function(up, file) {
+    var mp3_url ;
+    uploader.bind("FileUploaded", function(up, file,responseText) {
+      audition = JSON.parse(responseText.response);
+     mp3_url= JSON.parse(responseText.response).demo_file;
+     id = audition.id;
       $form.append(
         '<input class="hidden-audio" type="hidden" name="audio_file" value="' +
-          file.target_name +
+          mp3_url +
           '" />'
       );
       $form.append(
         '<input class="hidden-audio" type="hidden" name="audio_title" value="' +
-          file.name +
+        mp3_url +
           '" />'
       );
       $uploadBar.attr("style", "width:100%");
@@ -6875,10 +6874,10 @@ var AudioUploader = {
         $uploadBarContainer.slideUp("fast", function() {
           $uploadBar.attr("style", "width:0px");
 
-          $(".track-title", $audioUploadPreview).text(file.name);
+          $(".track-title", $audioUploadPreview).text(mp3_url);
           $(".track-play a", $audioUploadPreview).attr(
             "href",
-            "http://localhost/passeportauth/uploads/" + file.target_name
+            "http://192.168.1.10/passeportauth/uploads/" + mp3_url
           );
           $(".track-play", $audioUploadPreview)
             .removeClass("ui360")
@@ -6887,24 +6886,28 @@ var AudioUploader = {
 
           $audioUploadPreview.slideDown("slow", function() {
 
-            function test()
-            {
-              location.reload();
-            }
+            
            
             // if on user account profile page
             if ($("#user-audio-title").length > 0) {
               $('#btn_save').click(function(ev){
-                $audioUploadPreview.slideUp("fast"),function(ev)
-                {
-                  alert('test inside')
-                  parent.location.reload();
+               var $item2 =  $('.track-list-item',$audioUploadPreview);
+               $item=$item2
 
-   }
+               $item.attr('id',"play_id"+audition.id);
+               ('.btn ',$item).attr('onclick',);
+               $item.children("a").attr('onclick',`del(`+audition.id+`)`);
+
+                $('#account-tracks').append($item);
+                
+                $audioUploadPreview.slideUp("fast");
+
+               
               })
               $("#user-audio-title").focus();
             }
           });
+
         });
       }, 1000);
     });
@@ -6929,7 +6932,7 @@ var AvatarUploader = {
       max_file_size: "4mb",
       multipart_params : {id:user.id},
 
-      url: 'http://localhost:3000/users/upload',
+      url: 'http://192.168.1.10:3000/users/upload',
       resize: {        height: 162,
 
         width: 162
@@ -6948,7 +6951,7 @@ var AvatarUploader = {
     uploader.bind("FilesAdded", function(up, files) {
       // Clear any hidden audio
       $(".avatar-info").hide();
-      $("#upload-avatar-status").fadeIn();
+      // $("#upload-avatar-status").fadeIn();
       $("#upload-avatar-status").text("Uploading...");
       up.refresh(); // Reposition Flash/Silverlight
       uploader.start();

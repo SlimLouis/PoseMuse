@@ -10,6 +10,8 @@
                                         Activity | PoseMuse
                     </title>
 <meta name="description" content="dashboard, feed">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/animation.css" />
 
@@ -36,7 +38,7 @@
 <span class="icon-bar"></span>
 </button>
 <a class="navbar-brand" href="/"><img src="icon/posemuse.png" alt="PoseMuse" width="103" height="31"></a>
-<a  class="btn btn-primary create" onclick="append()" >Post Job</a>
+<a  class="btn btn-primary create" onclick="show_model()" >Post Job</a>
 
 </div>
 <div class="mobile-only mobile-menu collapse">
@@ -286,7 +288,27 @@ FIND VOCALISTS
 </ul>
 </div>
 </div>
-<div class="modal fade" id="vocalizrModal" tabindex="-1" role="dialog" aria-labelledby="vocalizr-modal" aria-hidden="true"></div>
+<div class="modal fade" id="vocalizrModal" tabindex="-1" role="dialog" aria-labelledby="vocalizr-modal" aria-hidden="true" style="display: none;">
+    <div id="startModal" class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-body">
+    <div class="body-col">
+    <div class="start-icon contest"><i class="fa fa-trophy" ></i></div>
+    <p class="highlight">Start a Contest to <span style="color:#1dda73">hear the artist's ideas before you award</span>.</p>
+    <ol>
+    <li>Payment for a Contest is made up front when you post it (fully refundable).</li>
+    <li>Outline your requirements and award amount, then create your Contest.</li>
+    <li>Receive entries from Vocalizr artists.</li>
+    <li>Award the Contest to the most suitable entry and complete your project in the Vocalizr Studio.</li>
+    </ol>
+    <p class="text-center">More about contests in our <a href="/faq#contests">FAQ</a></p>
+    <div class="text-center"><a href="/new/contest" class="btn btn-green">Create Contest</a></div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    </div>
 <script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/js/22cbc33.js?v3.42"></script>
 <script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/js/438b3b1.js?v3.42"></script>
 <script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/js/63ba31b.js?v3.42"></script>

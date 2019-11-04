@@ -3,7 +3,7 @@
     <access origin="*" subdomains="true"></access>
     <access origin="*" subdomains="true"></access>
     <tizen:application id="uScBEML1En.PoseMuse5" package="uScBEML1En" required_version="2.4"/>
-    <content src="dashboard.html"/>
+    <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.all"/>
     <icon src="posemuse.png"/>
     <name>PoseMuse5</name>

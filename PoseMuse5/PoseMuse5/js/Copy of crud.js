@@ -1,5 +1,5 @@
 
-var url = "http://localhost:3000/";
+var url = "http://192.168.1.10:3000/";
 var users = "users/";
 var action = ["users","create_user","login"] ;
 
@@ -11,7 +11,7 @@ function getUser()
 	alert("test")
 
     var httpReq = new XMLHttpRequest() ;
-    httpReq.open("GET","http://localhost:3000/users/find_user");
+    httpReq.open("GET","http://192.168.1.10:3000/users/find_user");
     httpReq.send();
 
 

@@ -1424,6 +1424,8 @@ is now connected with you
 <li><a href="#profile" data-toggle="tab">Profile</a></li>
 <li><a href="#audio" data-toggle="tab">Showreel Audio</a></li>
 <li><a href="#account" data-toggle="tab">Account</a></li>
+<li><a href="#contests" data-toggle="tab">Contests</a></li>
+
 </ul>
 <div class="tab-content">
 
@@ -1645,6 +1647,18 @@ Email
 </form>
 </div>
 
+<div class="tab-pane fade in" id="contests">
+       
+        
+        <h2>Your Contests</h2>
+        <div id="account-contests">
+        <form action="/user/edit#audio" method="post">
+        
+        </form>
+        </div>
+        </div>
+        
+
 
 <div class="tab-pane fade in" id="membership">
 <h3>You have FREE Membership</h3>
@@ -1770,13 +1784,6 @@ Email
 <script>
             AvatarUploader.init('upload-avatar-container', 'upload-avatar-btn');
             AudioUploader.init('upload-audio-container', 'upload-audio-btn');
-            /* Setup bid audition vars */
-            var params = {
-                recordAudioName: "1571227532-29434.mp3",
-                recordHandler: "/upload/record",
-                uploadAudioTmp: "/upload/audio/tmp"
-            };
-            vRecorder.init(params);
             ProfileManager.init();
 
             $('#connectAccept').on('ifChecked', function(e) {

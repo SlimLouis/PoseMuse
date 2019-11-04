@@ -8,7 +8,7 @@ const session = require('express-session')
 var CryptoJS = require('crypto-js');
 var sha1 = require('sha1');
  
-
+var fs = require('fs');
 
 var MySQLStore = require('express-mysql-session')(session);
 const upload_express = require('express-fileupload')
@@ -151,7 +151,17 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   {
     const {id} = req.body ;
     console.log(id);
-   deleteById({id})+res.json('deleted')
+    let audition =  await getaudition({id} );
+var aud = audition.dataValues
+console.log(aud.demo_file)
+let path = 'C:/xampp/htdocs/passeportAuth/uploads/'+aud.demo_file
+console.log(path);
+fs.unlink(path,function()
+{
+  console.log('deleted')
+})
+res.json(audition).then(deleteById({id}));
+
   })
   // login route
   audition.post('/login', async function(req, res, next) { 
@@ -237,9 +247,7 @@ audition.post('/upload', function(req, res) {
     if (err)
       return res.status(500).send(err);
 +
-createaudition({demo_file:file_name,id_user:real_id})
-+
-    res.send('File uploaded!with path'+real_id);
+createaudition({demo_file:file_name,id_user:real_id}).then(audition => res.json(audition))
 
     
 

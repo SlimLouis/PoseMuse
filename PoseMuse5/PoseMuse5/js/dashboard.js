@@ -3,6 +3,30 @@
 var url="http://192.168.1.10:3000/users/find_user"
 var user = JSON.parse(localStorage.getItem("user"));
 document.onload=check_usr();
+
+
+function show_model()
+{
+
+    // alert('im here')
+    // $('#vocalizrModal').attr('aria-hidden','false');
+    // $('#vocalizrModal').attr('style','display:block');
+    // $('#vocalizrModal').toggleClass("in");
+    // $('#vocalizrModal').close();
+    $( "#startModal" ).dialog({
+        modal: true,
+        buttons: {
+          Ok: function() {
+            $( this ).dialog( "close" );
+          }
+        }
+      });
+
+     
+
+
+}
+
 $( document ).ready(function() {
  
     load_user();
@@ -77,7 +101,7 @@ function check_usr()
 function current_user()
 {
 
-    const url = 'http://localhost:3000/users/get_current';
+    const url = 'http://192.168.1.10:3000/users/get_current';
     const data = { id: user.id };
     
     // try {
@@ -125,7 +149,7 @@ function current_user()
 
 function load_img()
 {
-    var img_src="http://localhost/passeportauth/uploads/images/"+user.profile_pic;
+    var img_src="http://192.168.1.10/passeportauth/uploads/images/"+user.profile_pic;
     $("#img_alt").attr("src",img_src);
 }
 
@@ -140,7 +164,7 @@ function load_user()
 
 {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET","http://localhost:3000/users/users",false);
+    xhttp.open("GET","http://192.168.1.10:3000/users/users",false);
     xhttp.setRequestHeader("Content-Type","application/json");
  
 
@@ -202,6 +226,7 @@ function draw_users(users)
 
             const time_join = new Date(dateTime);
             const time_now = new Date();
+            var time_diff = date_time_hour(time_now,time_join)
 
             // let dateTimeParts= dateTime.split(/[- : T]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
             // const dateObject = new Date(dateTimeParts[0]+'-'+dateTimeParts[1]+'-'+dateTimeParts[2]+'-'+dateTimeParts[3]); // our Date object
@@ -214,14 +239,13 @@ function draw_users(users)
 //         console.log(dateObject)
 //         console.log(time)
 
-  var time_diff = date_time_hour(time_now,time_join)
   console.log(time_diff)
             
    var $item_user= $(`
    <div class="activity-list-item">
             <div class="avatar">
                 <a href="inspect.html" onclick="save_user_inspect(`+users[i].id+`)">
-                                            <img src=http://localhost/passeportauth/uploads/images/`+users[i].profile_pic+`  width="42" height="42" class="img-circle">
+                                            <img src=http://192.168.1.10/passeportauth/uploads/images/`+users[i].profile_pic+`  width="42" height="42" class="img-circle">
                                     </a>
             </div>
             <div class="activity-item">
