@@ -1,0 +1,332 @@
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="vfavicon.png">
+<meta property="og:image" content="http://vocalizr.com/images/logo_share.png" />
+<meta property="og:image:secure_url" content="https://vocalizr.com/images/logo_share.png" />
+<title>
+                                        Activity | PoseMuse
+                    </title>
+<meta name="description" content="dashboard, feed">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/animation.css" />
+<script src="js/consts.js"></script>
+
+<script src="js/jquery.js"></script>
+<script src="js/serialize.js"></script>
+<script src="js/contests.js"></script>
+
+
+
+</head>
+<body>
+<div id="loading"><img src="https://d3flyfyvr0818w.cloudfront.net/images/main-loader.gif?v3.40"> Loading...</div>
+<div id="successNotification"></div>
+
+<div id="wrap">
+
+<div id="header" class="navbar navbar-default navbar-static-top">
+<div class="container">
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="/"><img src="icon/pusemuse_hzz.png" alt="PoseMuse" width="103" height="31"></a>
+<a   class="btn btn-primary create" onclick="show_model()" >Post Job</a>
+
+</div>
+<div class="mobile-only mobile-menu collapse">
+<div class="mobile-menu-container">
+<div class="menu-top">
+<div class="navbar-header">
+<a class="navbar-brand" href="/"><img src="icon/posemuse.png" alt="PoseMuse" width="103" height="31"></a>
+<a class="close-btn" data-toggle="mobile-menu">
+<svg width="26" height="32" viewBox="0 0 26 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18.6703 23.0846C19.0533 23.4677 19.6744 23.4677 20.0574 23.0846L20.0845 23.0575C20.4675 22.6745 20.4675 22.0534 20.0845 21.6704L14.4141 16L20.0845 10.3296C20.4675 9.94656 20.4675 9.32551 20.0845 8.94246L20.0574 8.9154C19.6744 8.53235 19.0533 8.53235 18.6703 8.9154L12.9999 14.5858L7.32947 8.91541C6.94642 8.53236 6.32537 8.53236 5.94232 8.91541L5.91525 8.94247C5.5322 9.32552 5.5322 9.94657 5.91525 10.3296L11.5856 16L5.91525 21.6704C5.5322 22.0534 5.5322 22.6745 5.91525 23.0575L5.94232 23.0846C6.32537 23.4676 6.94642 23.4676 7.32947 23.0846L12.9999 17.4142L18.6703 23.0846Z" fill="#14B9D6" />
+</svg>
+</a>
+</div>
+<ul class="nav navbar-nav">
+    <li class="active"><a href="dashboard.html">Activity</a></li>
+    <li><a href="/contest_center.html">Gig Center <span class="gig-center-status new">NEW</span></a></li>
+    <li><a href="vocalists.html">Vocalists</a></li>
+    <li><a href="producers.html">Producers</a></li>
+    <li class="last"><a href="/engine">
+    Mixdown & Mastering Services
+    </a>
+    </li>
+    </ul>
+<svg class="separator" width="320" height="2" viewBox="0 0 320 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 0.835068H319.75" stroke="#979797" stroke-opacity="0.276155" stroke-width="0.5" stroke-linecap="square" />
+</svg>
+<ul class="nav navbar-nav action-nav">
+<li>
+<a href="/start" data-toggle="vmodal" class="create"> Create a Gig or Contest</a>
+</li>
+</ul>
+</div>
+<div class="menu-bottom">
+<p class="text-upgrade-pro text-center">
+Maximise your exposure, earn more, and rocket your career with PoseMuse <b>PRO</b>
+</p>
+<a href="/membership?source=h_menu" class="btn btn-upgrade-pro">Upgrade to <b>PRO</b></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="profile-pane">
+<div class="profile-wrap no-padding-right no-padding-left">
+<div class="profile-left">
+<div class="avatar">
+<img src="http://192.168.1.5/passeportauth/uploads/images/batman.png" width="36" height="36" class="user-avatar img-circle  avatar-sm-roflan" /> </div>
+<div class="profile">
+<div class="intro">Hey, <a href="/u/roflan">PRNZ!</a></div>
+<i id="profile-dropdown-toggle" class="vocalizr-icon icon-profile-dropdown"></i>
+<div id="profile-dropdown" class="hide">
+<ul id="profile-nav">
+<li><a href=""><i class="vocalizr-icon fa fa-user"></i> Edit Profile</a></li>
+<li><a href="/user/engine"><i class="vocalizr-icon fa fa-gears"></i> Engine Orders</a></li>
+<li><a href="/membership"><i class="vocalizr-icon fa fa-ticket"></i> Upgrade with PRO</a></li>
+<li><a href="/user/finances"><i class="vocalizr-icon icon-finances"></i> Finances</a></li>
+<li><a href="/user/favorites"><i class="vocalizr-icon icon-favorites"></i> Favorites</a></li>
+<li><a href="/stats"><i class="vocalizr-icon fa fa-pie-chart"></i> Statistics</a></li>
+<li><a href="/connections"><i class="vocalizr-icon fa fa-link"></i> Connections</a></li>
+<li><a href="/logout"><i class="vocalizr-icon icon-logout"></i> Logout</a></li>
+</ul>
+</div>
+<svg class="separator" width="1" height="24" viewBox="0 0 1 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1" height="24" viewBox="0 0 1 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="0.5" y1="2.18557e-08" x2="0.499999" y2="24" stroke="#3B4B54" />
+</svg>
+</svg>
+<div class="buttons">
+<a class="mobile-navbar-toggle" data-toggle="mobile-menu">
+<span class="sr-only">Toggle navigation</span>
+<svg width="23" height="17" viewBox="0 0 23 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="23" height="2" rx="1" fill="white" />
+<rect y="7" width="23" height="2" rx="1" fill="white" />
+<rect y="14" width="23" height="2" rx="1" fill="white" />
+</svg>
+</a>
+<div class="message-alert">
+<a  onclick="get_user()"><i class="mail-icon"></i><span class="num-unread">0</span></a>
+</div>
+<div class="notification">
+<a href="" data-url="/notify/read"><i id="notify-toggle" class="notification-icon"></i><span class="num-unread">0</span></a>
+<div id="notify-dropdown" class="hide">
+<div class="notify-header">NOTIFICATIONS</div>
+<div class="notifies-list customScroll">
+<ul class="notify-dd">
+
+<li class="connect_accept" data-url="/u/Ratchy">
+<div class="notify-wrap clearfix">
+<div class="photo">
+<img src="https://d3flyfyvr0818w.cloudfront.net/uploads/avatar/small/6f61ad79592adc41e2ce0b3906f28fd81a9223f3.jpg?v3.40" width="40" height="40" class="img-circle avatar-sm-Ratchy" />
+</div>
+<div class="action">
+<div class="title">Ratchy</div>
+is now connected wityou
+</div>
+<span class="time">11 months ago</span>
+</div>
+</li>
+<li class="connect_accept" data-url="/u/ZeeR0187">
+<div class="notify-wrap clearfix">
+<div class="photo">
+<img src="https://d3flyfyvr0818w.cloudfront.net/uploads/avatar/small/9abbd19aff6b27a61af48cc5c0f33e17537a0c83.jpg?v3.40" width="40" height="40" class="img-circle avatar-sm-ZeeR0187" />
+</div>
+<div class="action">
+<div class="title">Jakaro</div>
+is now connected with you
+</div>
+<span class="time">a year ago</span>
+</div>
+</li>
+<li class="connect_accept" data-url="/u/granttj">
+<div class="notify-wrap clearfix">
+<div class="photo">
+<img src="https://d3flyfyvr0818w.cloudfront.net/uploads/avatar/small/26b4226558e0e7c2c5809ef0038501c381586a35.jpg?v3.40" width="40" height="40" class="img-circle avatar-sm-granttj" />
+</div>
+<div class="action">
+<div class="title">timgrant</div>
+is now connected with you
+</div>
+<span class="time">a year ago</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="user-dashboard-finance">
+<a href="/user/finances">
+<i class="user-wallet-no-funds tip" data-text="You have no funds"></i>
+<i class="user-wallet-no-funds-hover tip" data-text="You have no funds"></i>
+</a>
+</div>
+<div class="mobile-only" data-toggle="vocalizr-dropdown">
+<img id="img_alt" src="http://localhost/passeportauth/uploads/images/batman.png" alt="" width="33" height="33" class="user-avatar img-circle  avatar-sm-roflan" /> <div class="vocalizr-dropdown profile-dropdown">
+<div class="pointer"></div>
+<div class="dropdown-body">
+<ul class="profile-nav">
+
+<li>
+<a href="edit.html">
+<div class="vocalizr-icon">
+<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.907 4.74816C11.907 7.15664 9.98158 9.10863 7.60591 9.10863C5.23024 9.10863 3.30484 7.15664 3.30484 4.74816C3.30484 2.33968 5.23024 0.387695 7.60591 0.387695C9.98158 0.387695 11.907 2.33968 11.907 4.74816ZM9.64718 10.3705C9.92016 10.2675 10.2065 10.1986 10.4983 10.1986H10.6165C13.1098 10.1986 15.1326 12.2494 15.1326 14.7771V16.1943C15.1326 17.097 14.4102 17.8295 13.5197 17.8295H1.69176C0.801304 17.8295 0.0788574 17.097 0.0788574 16.1943V14.7771C0.0788574 12.2494 2.10171 10.1986 4.59499 10.1986H4.71499C5.0056 10.1986 5.29088 10.2668 5.56279 10.3694C6.20075 10.6101 6.88734 10.7437 7.60574 10.7437C8.32311 10.7437 9.01103 10.6105 9.64718 10.3705Z" fill="#FFF9F9" />
+</svg>
+</div>
+<span class="item-text" style="padding-top: 3px">Edit Profile</span>
+</a>
+</li>
+
+<a></a>
+
+<li><a id="logout" style="padding-top: 13px" onclick="logout()">
+<div class="vocalizr-icon" style="padding-left: 3px" >
+    
+<svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.7335 1.54297V10.7715C11.7335 11.2829 11.3005 11.6943 10.7623 11.6943H9.46732C8.92911 11.6943 8.49611 11.2829 8.49611 10.7715V1.54297C8.49611 1.03155 8.92911 0.620117 9.46732 0.620117H10.7623C11.3005 0.620117 11.7335 1.03155 11.7335 1.54297ZM20.1505 10.464C20.1505 7.26091 18.4914 4.43084 15.942 2.7005C15.4725 2.38135 14.817 2.52362 14.5337 3.00043L13.8943 4.08093C13.6556 4.48083 13.7648 4.99224 14.1574 5.2691C15.9136 6.50725 16.901 8.42985 16.9132 10.4217C16.9375 14.0708 13.8215 16.9239 10.1147 16.9239C6.33103 16.9239 3.31219 14.0092 3.31623 10.4601C3.31623 8.33372 4.38861 6.45726 6.06799 5.27294C6.46052 4.99609 6.57383 4.48467 6.33508 4.08093L5.6957 3.00043C5.41243 2.51978 4.75281 2.38519 4.27935 2.70435C1.73397 4.43853 0.0748181 7.27629 0.0788648 10.4793C0.0869582 15.7319 4.61118 20.0116 10.1349 20.0001C15.6668 19.9885 20.1505 15.7242 20.1505 10.464Z" fill="#FFF9F9" />
+</svg>
+</div>
+<span class="item-text" onclick="logout()">Logout</span>
+</a>
+</li>
+</ul>
+<div class="close-btn">
+<svg class="" width="26" height="32" viewBox="0 0 26 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18.5555 22.7789C18.9386 23.162 19.5596 23.162 19.9427 22.7789L19.9697 22.7519C20.3528 22.3688 20.3528 21.7478 19.9697 21.3647L14.2993 15.6943L19.9697 10.0239C20.3528 9.6409 20.3528 9.01985 19.9697 8.6368L19.9427 8.60974C19.5596 8.22668 18.9386 8.22668 18.5555 8.60974L12.8851 14.2801L7.21472 8.60975C6.83167 8.2267 6.21062 8.2267 5.82757 8.60975L5.80051 8.63681C5.41746 9.01986 5.41746 9.64091 5.80051 10.024L11.4709 15.6943L5.80051 21.3647C5.41746 21.7478 5.41746 22.3688 5.80051 22.7519L5.82757 22.7789C6.21062 23.162 6.83167 23.162 7.21472 22.7789L12.8851 17.1085L18.5555 22.7789Z" fill="white" />
+</svg>
+</div> </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="profile-right">
+<div class="hidden-xs" style="">
+<a href="/membership" class="btn btn-upgrade-pro">Upgrade with PRO</a><br>
+</div>
+<button type="button"  class="btn btn-primary create">Post Job</button>
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col-sm-8">
+<div id="activity-header">
+<h1>PoseMuse Activity</h1>
+<div class="activity-filter">
+<ul>
+<li>Show:</li>
+<li><a href="/dashboard.html" onclick="window.location.href='dashboard.html'" class="activity-link">All</a></li>
+<li ><a href="/vocalists.html" onclick="window.location.href='vocalists.html'" class="activity-link">Vocalists</a></li>
+<li><a href="/producers.html" onclick="window.location.href='producers.html'" class="activity-link">Producers</a></li>
+<li class="active"><a href="/contests.html" onclick="window.location.href='contests.html'" class="activity-link">Contests</a></li>
+</ul>
+</div>
+</div>
+<div id="vocalizr-activity">
+
+</div>
+<div class="activity-paging">
+
+</div>
+</div>
+
+
+
+<div class="discover-filter-panel panel panel-default">
+<div class="panel-heading">
+FIND VOCALISTS
+</div>
+<div class="panel-body padding">
+<p>Find vocalists for your gig simply by entering the name of an artist you want them to sound like.</p>
+<form id="search-form" action="/vocalists" method="post" style="display:inline" novalidate>
+<div class="row form-group">
+<div class="col-sm-12">
+<input type="text" id="user_search_sounds_like" name="user_search[sounds_like]" required="required" class="form-control input" />
+</div>
+</div>
+<input type="hidden" id="user_search__token" name="user_search[_token]" value="212e8181ce9b8fd8a0d676feccbf6ccae93a8199" />
+<input type="hidden" name="page" value="1" id="page">
+<input type="hidden" name="search" value="Search">
+<div class="form-buttons">
+<button type="submit" name="search" value="search" class="btn btn-sm btn-default">SEARCH</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div class="container">
+<div class="copyright col-sm-12">
+&copy; Copyright PoseMuse 2019
+</div>
+<ul id="footer-nav">
+<li class="share"><a href="https://www.facebook.com/Vocalizr"><i class="fa fa-facebook-square"></i></a></li>
+<li class="share"><a href="https://twitter.com/vocalizr"><i class="fa fa-twitter-square"></i></a></li>
+<li><a href="http://support.vocalizr.com/" target="_blank">Help</a></li>
+<li><a href="http://blog.vocalizr.com/" target="_blank">Blog</a></li>
+<li><a href="/membership">Membership</a></li>
+<li><a href="/fees">Fees & Charges</a></li>
+<li><a href="/terms">Terms</a></li>
+<li><a href="/privacy">Privacy</a></li>
+</ul>
+</div>
+</div>
+<div class="modal fade" id="vocalizrModal" tabindex="-1" role="dialog" aria-labelledby="vocalizr-modal" aria-hidden="true" style="display: none;">
+    <div id="startModal" class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-body">
+    <div class="body-col">
+    <div class="start-icon contest"><i class="fa fa-trophy" ></i></div>
+    <p class="highlight">Start a Contest to <span style="color:#1dda73">hear the artist's ideas before you award</span>.</p>
+    <ol>
+    <li>Payment for a Contest is made up front when you post it (fully refundable).</li>
+    <li>Outline your requirements and award amount, then create your Contest.</li>
+    <li>Receive entries from Vocalizr artists.</li>
+    <li>Award the Contest to the most suitable entry and complete your project in the Vocalizr Studio.</li>
+    </ol>
+    <p class="text-center">More about contests in our <a href="/faq#contests">FAQ</a></p>
+    <div class="text-center"><a href="contest.html" class="btn btn-green">Create Contest</a></div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+<script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/js/22cbc33.js?v3.42"></script>
+<script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/js/438b3b1.js?v3.42"></script>
+<script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/js/63ba31b.js?v3.42"></script>
+<script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/js/90e2309.js?v3.42"></script>
+<script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/plugins/plyr/plyr.js?v3.42"></script>
+<script src="https://d3flyfyvr0818w.cloudfront.net/js/bb0dfbd.js?v3.42"></script>
+<script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/plugins/jquery-ui/jquery-ui.min.js?v3.42"></script>
+<script type="text/javascript" src="https://d3flyfyvr0818w.cloudfront.net/js/735d5b4.js?v3.42"></script>
+
+<!--[if IE]><script type="text/javascript" src="js/excanvas.js"></script><![endif]-->
+
+<!-- <script>
+        $(document).ready(function(){
+            new VocalizrScroll($, '/dashboard/add-activity');
+        });
+    </script> -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+    "id": 1,
+    "id_p": "2bb61b7f6adc",
+    "name": "looking for hot singer",
+    "type_use": "producer",
+    "gender": "female",
+    "style": "Tech house",
+    "price": 800,
+    "endedAt": null,
+    "status": "open",
+    "description": "here it is bro",
+    "audio": "15730346451966IntroLaCasaDePapel-Mylifeisgoingon(cover).mp3",
+    "muserId": 6,
+    "createdAt": "2019-11-06T10:04:26.000Z",
+    "updatedAt": "2019-11-06T10:04:26.000Z",
+    "muser": {
+        "id": 6,
+        "email": "amyral@gmail.com",
+        "password": "$2b$10$FIc3Yg35BjghO0kPVKzUjuvns3tM2Rdne6Ke.r7aGweQdAUfiT7tm",
+        "username": "lazher",
+        "first_name": "lazher",
+        "last_name": "lazher",
+        "profile_pic": "batman.png",
+        "createdAt": "2019-11-05T20:55:44.000Z",
+        "updatedAt": "2019-11-05T20:55:44.000Z"
+    }
+}

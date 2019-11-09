@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<link rel="shortcut icon" href="favicon.png">
+<title>
+                                        Login, PoseMuse
+                    </title>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/animation.css"/>
+<script src="js/consts.js"></script>
+
+<script src="js/jquery.js"></script>
+<!-- <script src="js/serialize.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.js"></script>
+
+<script src="js/login.js"></script>
+
+
+
+
+
+
+</head>
+<body>
+<div id="wrap">
+<div class="header">
+<a href="/" class="centered-brand"><script type="text/javascript" style="display:none">
+//<![CDATA[
+window.__mirage2 = {petok:"befd2a963dbb20447dfe6c12ea30ece2db2b24d1-1571146384-1800"};
+//]]>
+</script>
+<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/04b3eb47/cloudflare-static/mirage2.min.js"></script>
+<img src="icon/posemuse22.png" alt="PoseMuse" width="150px" height="150px" style="display:none;visibility:hidden;"><noscript><img src="icon/posemuse22.png" alt="PoseMuse" width="146px" height="44px"></noscript></a>
+</div>
+
+<div class="row">
+<div class="container">
+<div class="login-wrap">
+<div class="form-message">Sign in or <a href="signup.html">Create an account</a></div>
+<div class="alert alert-error" id="alertXO">Invalid email address or password. Please try again.</div>
+
+<div class="container">
+<div id="login-form-container">
+<div class="light-content">
+<form id="user_login"  class="form login-form clearfix"  method="post" name="user_login">
+<div class="row form-group">
+<div class="col-sm-12">
+<div>
+<label for="email" class="field-label required">Email address:</label>
+<input type="text" id="email" name="email" value="" class="form-control input" tabindex="1">
+</div>
+</div>
+</div>
+<div class="row form-group">
+<div class="col-sm-12">
+<div>
+<label for="password" class="field-label required">Password:</label>
+<input type="password" id="password" name="password" class="form-control input" tabindex="2">
+</div>  
+</div>
+</div>
+<div class="fields-row">
+<div class="field-wrap">
+<input type="checkbox" id="remember_me" name="_remember_me" checked /> Keep me logged in
+</div>
+</div>
+<div class="form-group centered">
+<div class="btn-wrap">
+<input type="submit" name="login_submit" form="user_login" value="Sign in" class="btn btn-lg btn-default" tabindex="3">
+</div>
+
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
